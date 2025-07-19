@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven Ashley - Developer Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Using a light blue background color */
+            background-color: #f0f9ff; /* sky-50 */
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors;
+        }
+        .nav-link.active {
+            @apply bg-blue-600 text-white hover:bg-blue-700 hover:text-white;
+        }
+        .section-title {
+            @apply text-3xl font-bold text-slate-800 mb-8 text-center;
+        }
+        /* Card style for solid background */
+        .card {
+            @apply bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105;
+        }
+        /* Style for main content panels */
+        .content-panel {
+             @apply bg-white rounded-lg shadow-md;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: tailwind.colors.slate,
+                        blue: tailwind.colors.blue,
+                        sky: tailwind.colors.sky,
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-600">
+
+    <!-- Header & Navigation Bar -->
+    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" onclick="showPage('home')" class="text-xl font-bold text-slate-800">Steven Ashley</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" onclick="showPage('home')" data-page="home" class="nav-link active">Home</a>
+                        <a href="#about" onclick="showPage('about')" data-page="about" class="nav-link">About</a>
+                        <a href="#projects" onclick="showPage('projects')" data-page="projects" class="nav-link">Projects</a>
+                        <a href="#skills" onclick="showPage('skills')" data-page="skills" class="nav-link">Skills</a>
+                        <a href="#certifications" onclick="showPage('certifications')" data-page="certifications" class="nav-link">Certifications</a>
+                        <a href="#blog" onclick="showPage('blog')" data-page="blog" class="nav-link">Blog</a>
+                        <a href="#contact" onclick="showPage('contact')" data-page="contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-800 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" id="menu-closed-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg class="h-6 w-6 hidden" id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" onclick="showPage('home', true)" data-page-mobile="home" class="nav-link block active">Home</a>
+                <a href="#about" onclick="showPage('about', true)" data-page-mobile="about" class="nav-link block">About</a>
+                <a href="#projects" onclick="showPage('projects', true)" data-page-mobile="projects" class="nav-link block">Projects</a>
+                <a href="#skills" onclick="showPage('skills', true)" data-page-mobile="skills" class="nav-link block">Skills</a>
+                <a href="#certifications" onclick="showPage('certifications', true)" data-page-mobile="certifications" class="nav-link block">Certifications</a>
+                <a href="#blog" onclick="showPage('blog', true)" data-page-mobile="blog" class="nav-link block">Blog</a>
+                <a href="#contact" onclick="showPage('contact', true)" data-page-mobile="contact" class="nav-link block">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Home Page -->
+        <section id="home" class="page min-h-[70vh] flex items-center">
+            <div class="text-center w-full">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Steven Ashley: Bridging Data and Development.</h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-600 mb-8">
+                    Transitioning from a Senior Data Analyst with over 12 years of experience to a passionate Application Developer. I transform complex data into functional, user-centric applications.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#projects" onclick="showPage('projects')" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors shadow-md">View My Projects</a>
+                    <a href="#contact" onclick="showPage('contact')" class="bg-slate-200 text-slate-800 font-bold py-3 px-6 rounded-lg hover:bg-slate-300 transition-colors shadow-md">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page hidden">
+            <h2 class="section-title">About Me</h2>
+            <div class="max-w-4xl mx-auto content-panel p-8">
+                <p class="mb-4">I am a seasoned data professional bridging the gap between complex information and actionable insights. My background in psychology and sociology informs my approach to data analysis and application development, enabling me to consider the human element in every project.</p>
+                <p class="mb-4">With 12 years of experience as a Senior Data Analyst at Oracle Cerner, I'm adept at designing, implementing, validating, and presenting data-driven solutions that meet diverse organizational needs. My technical skills encompass a wide range of tools and technologies, including SQL, Python, Generative AI, and cloud computing platforms.</p>
+                <p>My journey into application development is driven by a passion for building the tools that bring data to life. I am excited to leverage my deep understanding of data structures, ETL processes, and user needs to create efficient, intuitive, and impactful applications.</p>
+            </div>
+        </section>
+
+        <!-- Projects Page -->
+        <section id="projects" class="page hidden">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Project Card 1 -->
+                <div class="card">
+                    <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Project+One" onerror="this.onerror=null;this.src='https://placehold.co/600x400/3b82f6/ffffff?text=Image+Not+Found';" alt="Project 1 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Data Dashboard Concept</h3>
+                        <p class="mb-4">A compelling, one-paragraph description of the project. This interactive dashboard visualizes healthcare data trends, allowing users to filter and explore insights dynamically.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Python</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">JavaScript</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Flask</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="github" class="w-4 h-4"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more project cards as needed -->
+                <div class="card">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=Project+Two" onerror="this.onerror=null;this.src='https://placehold.co/600x400/10b981/ffffff?text=Image+Not+Found';" alt="Project 2 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">AI-Powered Report Generator</h3>
+                        <p class="mb-4">This tool leverages Generative AI to automatically create summary reports from raw data files, saving hours of manual work. Built with a focus on accuracy and natural language output.</p>
+                         <div class="mb-4">
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Generative AI</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Python</span>
+                             <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Oracle SQL</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="github" class="w-4 h-4"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Project+Three" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f59e0b/ffffff?text=Image+Not+Found';" alt="Project 3 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">EHR Data Migration Tool</h3>
+                        <p class="mb-4">A command-line utility designed to extract, transform, and load patient data between different Electronic Health Record systems, ensuring data integrity and security.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">ETL</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">MS SQL</span>
+                             <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">C#.NET</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="github" class="w-4 h-4"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Project+Four" onerror="this.onerror=null;this.src='https://placehold.co/600x400/8b5cf6/ffffff?text=Image+Not+Found';" alt="Project 4 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Personal Blog Platform</h3>
+                        <p class="mb-4">A fully functional, static-generated blog built with modern web technologies. This portfolio itself is a testament to the project's success and capabilities.</p>
+                         <div class="mb-4">
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">HTML</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">Tailwind CSS</span>
+                            <span class="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700 mr-2 mb-2">JavaScript</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="github" class="w-4 h-4"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Page -->
+        <section id="skills" class="page hidden">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Category -->
+                <div class="content-panel p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Programming & Scripting</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Python</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>SQL</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>R</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>JavaScript</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>CCL</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>C#.NET</li>
+                    </ul>
+                </div>
+                <!-- Skill Category -->
+                <div class="content-panel p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Web Technologies</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>ASP.NET</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>HTML</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>CSS</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>jQuery</li>
+                    </ul>
+                </div>
+                <!-- Skill Category -->
+                <div class="content-panel p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Databases & ETL</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Oracle (SQL, PL/SQL, APEX)</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>MS SQL Server</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>ETL</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Data Warehousing</li>
+                    </ul>
+                </div>
+                <!-- Skill Category -->
+                <div class="content-panel p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">AI & Machine Learning</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Generative AI</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Machine Learning</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Predictive Modeling</li>
+                    </ul>
+                </div>
+                 <!-- Skill Category -->
+                <div class="content-panel p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Platforms & Tools</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Databricks</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Power BI</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Tableau</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>Git</li>
+                        <li class="flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 text-blue-500 mr-2"></i>AWS</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Page -->
+        <section id="certifications" class="page hidden">
+            <h2 class="section-title">Certifications</h2>
+            <div class="max-w-4xl mx-auto space-y-4">
+                <!-- Certification Item -->
+                <div class="content-panel p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800">Google Advanced Data Analytics</h3>
+                        <p class="text-sm">Google - June 2025</p>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/professional-cert/Q0LKBQORMC2C" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> View</a>
+                </div>
+                 <div class="content-panel p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800">Oracle APEX: Foundations</h3>
+                        <p class="text-sm">Oracle - June 2025</p>
+                    </div>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> View</a>
+                </div>
+                <div class="content-panel p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800">Generative AI: Introduction and Applications</h3>
+                        <p class="text-sm">IBM - March 2025</p>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/certificate/CJT6YXTZ47IY" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> View</a>
+                </div>
+                 <div class="content-panel p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800">Google Data Analytics</h3>
+                        <p class="text-sm">Google - December 2024</p>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/VXL3IIPN9AJU" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> View</a>
+                </div>
+                <!-- Add other certifications similarly -->
+            </div>
+        </section>
+
+        <!-- Blog Page -->
+        <section id="blog" class="page hidden">
+            <div id="blog-list">
+                <h2 class="section-title">Blog</h2>
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <!-- Blog Post Summary 1 -->
+                    <div class="content-panel p-6">
+                        <p class="text-sm text-slate-500 mb-1">July 18, 2025</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">From Analyst to Developer: My Journey</h3>
+                        <p class="mb-4">Exploring the transition from a data-heavy role to building applications. I'll discuss the overlapping skills, the challenges, and the 'aha' moments that defined my path...</p>
+                        <a href="#" onclick="showBlogPost('post1'); return false;" class="text-blue-600 hover:text-blue-800 font-semibold">Read More &rarr;</a>
+                    </div>
+                    <!-- Blog Post Summary 2 -->
+                    <div class="content-panel p-6">
+                        <p class="text-sm text-slate-500 mb-1">July 10, 2025</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">The Rise of Generative AI in Data</h3>
+                        <p class="mb-4">Generative AI is more than just a buzzword. It's fundamentally changing how we interact with and derive value from data. Here's a look at its practical applications beyond chatbots...</p>
+                        <a href="#" onclick="showBlogPost('post2'); return false;" class="text-blue-600 hover:text-blue-800 font-semibold">Read More &rarr;</a>
+                    </div>
+                    <!-- Blog Post Summary 3 -->
+                    <div class="content-panel p-6">
+                        <p class="text-sm text-slate-500 mb-1">June 28, 2025</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">5 Key Lessons from My First Python Project</h3>
+                        <p class="mb-4">Diving into a new language can be daunting. My first major Python project taught me more than just syntax. Here are five key takeaways about planning, debugging, and community...</p>
+                        <a href="#" onclick="showBlogPost('post3'); return false;" class="text-blue-600 hover:text-blue-800 font-semibold">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Full Blog Post Views -->
+            <div id="blog-posts" class="hidden">
+                 <a href="#" onclick="showBlogList(); return false;" class="mb-8 inline-block text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Blog List</a>
+                <div id="post1" class="blog-post hidden max-w-3xl mx-auto content-panel p-8">
+                    <p class="text-sm text-slate-500 mb-1">July 18, 2025</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">From Analyst to Developer: My Journey</h2>
+                    <p>Full content of the blog post goes here. This would be a longer, more detailed exploration of the topic introduced in the summary. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+                </div>
+                <div id="post2" class="blog-post hidden max-w-3xl mx-auto content-panel p-8">
+                     <p class="text-sm text-slate-500 mb-1">July 10, 2025</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">The Rise of Generative AI in Data</h2>
+                    <p>Full content of the blog post goes here. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>
+                </div>
+                <div id="post3" class="blog-post hidden max-w-3xl mx-auto content-panel p-8">
+                     <p class="text-sm text-slate-500 mb-1">June 28, 2025</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">5 Key Lessons from My First Python Project</h2>
+                    <p>Full content of the blog post goes here. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page hidden">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="max-w-2xl mx-auto content-panel p-8">
+                <p class="text-center mb-6">Have a question or want to work together? Feel free to reach out!</p>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-slate-700">Name</label>
+                        <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+                        <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-slate-700">Message</label>
+                        <textarea name="message" id="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors shadow-md">Send Message</button>
+                    </div>
+                </form>
+                <div class="mt-8 text-center">
+                    <p class="mb-4">Or connect with me here:</p>
+                    <div class="flex justify-center items-center gap-6">
+                         <a href="mailto:steven.ashley@gmail.com" class="text-slate-500 hover:text-blue-600"><i data-lucide="mail" class="w-8 h-8"></i></a>
+                        <a href="https://www.linkedin.com/in/stevenashley" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600"><i data-lucide="github" class="w-8 h-8"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white text-slate-600 border-t border-slate-200">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center items-center gap-6 mb-4">
+                <a href="mailto:steven.ashley@gmail.com" class="hover:text-blue-600"><i data-lucide="mail" class="w-6 h-6"></i></a>
+                <a href="https://www.linkedin.com/in/stevenashley" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600"><i data-lucide="github" class="w-6 h-6"></i></a>
+            </div>
+            <p>&copy; 2025 Steven Ashley. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navigation -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = document.getElementById('menu-open-icon');
+        const menuClosedIcon = document.getElementById('menu-closed-icon');
+
+        // Function to show a page and update nav link styles
+        function showPage(pageId, isMobile = false) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the selected page
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            }
+            
+            // Update active state for nav links
+            const linkSelector = isMobile ? `[data-page-mobile="${pageId}"]` : `[data-page="${pageId}"]`;
+            const allLinksSelector = isMobile ? '[data-page-mobile]' : '[data-page]';
+
+            document.querySelectorAll(allLinksSelector).forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.querySelector(linkSelector);
+            if(activeLink) {
+                 activeLink.classList.add('active');
+            }
+
+            // Also update the other set of nav links (desktop/mobile)
+            const otherLinkSelector = isMobile ? `[data-page="${pageId}"]` : `[data-page-mobile="${pageId}"]`;
+             const otherAllLinksSelector = isMobile ? '[data-page]' : '[data-page-mobile]';
+             document.querySelectorAll(otherAllLinksSelector).forEach(link => {
+                link.classList.remove('active');
+            });
+            const otherActiveLink = document.querySelector(otherLinkSelector);
+            if(otherActiveLink) {
+                 otherActiveLink.classList.add('active');
+            }
+
+            // Scroll to top of page content
+            window.scrollTo(0, 0);
+
+            // If it's a mobile click, close the menu
+            if (isMobile) {
+                mobileMenu.classList.add('hidden');
+                menuOpenIcon.classList.add('hidden');
+                menuClosedIcon.classList.remove('hidden');
+            }
+        }
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuOpenIcon.classList.toggle('hidden');
+            menuClosedIcon.classList.toggle('hidden');
+        });
+
+        // Blog post navigation
+        const blogList = document.getElementById('blog-list');
+        const blogPostsContainer = document.getElementById('blog-posts');
+        const blogPostViews = document.querySelectorAll('.blog-post');
+
+        function showBlogPost(postId) {
+            blogList.classList.add('hidden');
+            blogPostsContainer.classList.remove('hidden');
+            blogPostViews.forEach(post => post.classList.add('hidden'));
+            document.getElementById(postId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showBlogList() {
+            blogPostsContainer.classList.add('hidden');
+            blogList.classList.remove('hidden');
+             window.scrollTo(0, 0);
+        }
+
+        // Set initial page based on hash or default to home
+        const initialPage = window.location.hash.substring(1) || 'home';
+        showPage(initialPage);
+
+        // Handle browser back/forward navigation
+        window.onhashchange = () => {
+            const pageId = window.location.hash.substring(1) || 'home';
+            showPage(pageId);
+        };
+
+    </script>
+</body>
+</html>
